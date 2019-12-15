@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  use_doorkeeper
+  devise_for :students
+  devise_for :agents
   resources :ratings
   resources :interests
   resources :leads
