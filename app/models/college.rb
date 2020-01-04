@@ -4,8 +4,8 @@ class College < ApplicationRecord
   has_many :media, as: :imageable
   has_many :testimonials
 
-  validate :full_name, :address, :city, :country, presence: true
-  validate :code, uniqueness: { case_sensitive: false }
+  validates :full_name, :address, :city, :country, presence: true
+  validates :code, uniqueness: { case_sensitive: false }
 
 
 
