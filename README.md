@@ -5,13 +5,15 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: ruby 2.6.3
 
-* System dependencies
+* System dependencies: None
 
 * Configuration
 
-* Database creation
+* Database creation:
+rails db:create
+rails db:migrate
 
 * Database initialization
 
