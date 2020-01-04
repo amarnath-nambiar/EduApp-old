@@ -4,5 +4,5 @@ class Course < ApplicationRecord
   has_many :interests, through: :course_interests
   has_many :media, as: :imageable
 
-  validates :full_name, presence: true
+  validates :full_name, presence: true, uniqueness: { scope: :college_id, case_sensitive: false }
 end

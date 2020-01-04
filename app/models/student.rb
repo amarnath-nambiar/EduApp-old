@@ -9,5 +9,12 @@ class Student < ApplicationRecord
   # validates :email, uniqueness: { case_sensitive: false }
   validates :phone, numericality: true, uniqueness: true, length: { is: 10 }
 
+  after_create :generate_referral_code
+
+  def generate_referral_code
+    self.referred_by = self.referral_code.to_i(16) if self.referral_code.present?
+    self.referral_code = self.id.to_s(16).upcase
+    self.save
+  end
 
 end
