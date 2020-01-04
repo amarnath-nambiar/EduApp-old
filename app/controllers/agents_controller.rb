@@ -15,6 +15,8 @@ class AgentsController < ApplicationController
 
   # POST /agents
   def create
+
+    puts agent_params
     @agent = Agent.new(agent_params)
 
     if @agent.save
@@ -46,6 +48,6 @@ class AgentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def agent_params
-      params.require(:agent).permit(:first_name)
+      params.require(:agent).permit(:first_name,:last_name,:email,:phone,:alt_phone,:about,:image_url)
     end
 end

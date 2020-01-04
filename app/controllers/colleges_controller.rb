@@ -46,6 +46,7 @@ class CollegesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def college_params
-      params.fetch(:college, {})
+      params.require(:college).permit(:agent_id, :full_name, :address, :city, :country, :code, :about, :description,
+                                      :website, :archived, )
     end
 end

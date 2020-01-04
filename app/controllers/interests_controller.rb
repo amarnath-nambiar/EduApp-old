@@ -46,6 +46,6 @@ class InterestsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def interest_params
-      params.fetch(:interest, {})
+      params.fetch(:interest).permit(:title, :description, :parent_interest_id)
     end
 end

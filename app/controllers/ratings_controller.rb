@@ -46,6 +46,6 @@ class RatingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def rating_params
-      params.fetch(:rating, {})
+      params.fetch(:rating).permit(:college_id, :student_id, :title, :description, :pros, :cons, :advice)
     end
 end

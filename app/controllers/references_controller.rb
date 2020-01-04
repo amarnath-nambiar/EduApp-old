@@ -46,6 +46,6 @@ class ReferencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def reference_params
-      params.fetch(:reference, {})
+      params.fetch(:reference).permit(:full_name, :phone, :student_id)
     end
 end
