@@ -10,6 +10,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Phusion Passenger as the web application server
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
+gem 'sidekiq', '~>6.0.0'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
