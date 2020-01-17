@@ -1,4 +1,6 @@
 class Agent < ApplicationRecord
+  has_secure_password
+
   has_many :colleges
 
   validates :first_name, :phone, presence: true
