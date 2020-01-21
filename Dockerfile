@@ -1,40 +1,18 @@
-FROM ruby:2.6.3-alpine
+FROM ruby:2.6.3
 
-ENV BUNDLER_VERSION=2.0.2
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN mkdir /myapp
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+COPY . /myapp
 
-RUN apk add --update --no-cache \
-      binutils-gold \
-      build-base \
-      curl \
-      file \
-      g++ \
-      gcc \
-      git \
-      less \
-      libstdc++ \
-      libffi-dev \
-      libc-dev \ 
-      linux-headers \
-      libxml2-dev \
-      libxslt-dev \
-      libgcrypt-dev \
-      make \
-      netcat-openbsd \
-      nodejs \
-      openssl \
-      pkgconfig \
-      postgresql-dev \
-      python \
-      tzdata 
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
 
-RUN gem install bundler -v 2.0.2
-
-WORKDIR /app
-
-COPY Gemfile Gemfile.lock ./
-
-RUN bundle check || bundle install
-
-COPY . ./ 
-
-ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]	
+# Start the main process.
+CMD ["rails", "server", "-b", "0.0.0.0"]
