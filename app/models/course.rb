@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  default_scope { where(:deleted_at => nil) }
+
   belongs_to :college
   has_many :course_interests, dependent: :destroy
   has_many :interests, through: :course_interests

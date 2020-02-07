@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  default_scope { where(:deleted_at => nil) }
+
   has_many :leads
   has_many :references
   has_many :messages

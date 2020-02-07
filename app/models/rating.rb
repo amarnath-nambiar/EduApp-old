@@ -1,4 +1,6 @@
 class Rating < ApplicationRecord
+  default_scope { where(:deleted_at => nil) }
+
   belongs_to :college
   belongs_to :student
 

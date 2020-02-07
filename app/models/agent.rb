@@ -1,5 +1,6 @@
 class Agent < ApplicationRecord
   has_secure_password
+  default_scope { where(:deleted_at => nil) }
 
   has_many :colleges
 
