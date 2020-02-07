@@ -1,4 +1,7 @@
 class Student < ApplicationRecord
+
+  has_secure_password
+
   default_scope { where(:deleted_at => nil) }
 
   has_many :leads
@@ -7,8 +10,7 @@ class Student < ApplicationRecord
   has_many :ratings
 
   validates :first_name, :phone, presence: true
-  # validates :email, presence: true
-  # validates :email, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: { allow_blank: true, case_sensitive: false }
   validates :phone, numericality: true, uniqueness: true, length: { is: 10 }
 
   after_create :generate_referral_code

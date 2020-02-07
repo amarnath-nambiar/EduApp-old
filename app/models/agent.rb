@@ -5,8 +5,8 @@ class Agent < ApplicationRecord
   has_many :colleges
 
   validates :first_name, :phone, presence: true
-  # validates :email, presence: true
-  # validates :email, uniqueness: { case_sensitive: false }
+  validates :email, presence: true
+  validates :email, uniqueness: { case_sensitive: false }
   validates :phone, numericality: true, uniqueness: true, length: { is: 10 }
 
   def generate_password_token!
