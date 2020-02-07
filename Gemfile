@@ -19,6 +19,8 @@ gem 'foreman', '~> 0.82.0'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'jwt', '~> 2.2', '>= 2.2.1'
+gem 'permanent_records', '~> 4.2', '>= 4.2.7'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
