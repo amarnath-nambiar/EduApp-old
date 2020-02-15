@@ -8,7 +8,7 @@ class College < ApplicationRecord
 
   validates :full_name, :address, :city, :country, presence: true
   validates :code, uniqueness: { allow_blank: true, case_sensitive: false }
-  validates :full_name, uniqueness: { case_sensitive: false, scope: :city }
+  validates :full_name, uniqueness: { case_sensitive: false, scope: [:city,:deleted_at] }
 
 
 end
