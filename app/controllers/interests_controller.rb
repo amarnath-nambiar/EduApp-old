@@ -1,5 +1,5 @@
 class InterestsController < ApplicationController
-  before_action :set_interest, only: [:show, :update, :destroy]
+  before_action :set_interest, only: [:show, :update, :destroy, :interested_courses]
 
   # GET /interests
   def index
@@ -36,6 +36,11 @@ class InterestsController < ApplicationController
   # DELETE /interests/1
   def destroy
     @interest.destroy
+  end
+  
+  def interested_courses
+    course_interests =  CourseInterest.where('interest_id = ? ', @interest.id).joins(:course => :college).select("courses.id,courses.full_name, colleges.full_name as collge_name,colleges.id as college_id,colleges.city,colleges.country,courses.about")
+    render   json: course_interests
   end
 
   private
