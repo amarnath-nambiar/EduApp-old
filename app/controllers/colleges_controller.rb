@@ -38,6 +38,14 @@ class CollegesController < ApplicationController
     @college.destroy
   end
 
+  #search for colleges and courses
+  def search_colleges_and_courses
+    keywords = params[:keyword].to_s.split
+    colleges = College.where("full_name ilike '%#{keywords[0]}%'").select("id,full_name,city,country,about")
+    courses = Course.where("courses.full_name ilike '%#{keywords[0]}%'").joins(:college).select("courses.id,courses.full_name, colleges.full_name as collge_name,colleges.id as college_id,colleges.city,colleges.country,courses.about")
+    render json: {colleges: colleges, courses: courses}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_college

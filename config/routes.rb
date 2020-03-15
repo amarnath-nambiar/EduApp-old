@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :references
   resources :students
   resources :courses
-  resources :colleges
+  resources :colleges do
+    get 'search_colleges_and_courses', on: :collection
+  end
   resources :agents
   resources :interests do
     get 'interested_courses', on: :member
