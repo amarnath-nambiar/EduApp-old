@@ -11,7 +11,7 @@ class AgentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create agent" do
-    assert_difference('Agent.count') do
+    assert_difference('User.count') do
       post agents_url, params: { agent: { first_name: @agent.first_name } }, as: :json
     end
 
@@ -29,7 +29,7 @@ class AgentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy agent" do
-    assert_difference('Agent.count', -1) do
+    assert_difference('User.count', -1) do
       delete agent_url(@agent), as: :json
     end
 

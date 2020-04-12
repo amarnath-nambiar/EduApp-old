@@ -5,9 +5,9 @@ class AuthenticationController < ApplicationController
   # POST /auth/login
   def login
     @agent = if params[:phone].present?
-      Agent.find_by_phone(params[:phone])
+      User.find_by_phone(params[:phone])
     else
-      Agent.find_by_email(params[:email])
+      User.find_by_email(params[:email])
     end
     if @agent&.authenticate(params[:password])
       render json: { token: JsonWebToken.encode(user_id: @agent.id), agent_id: @agent.id }, status: :ok

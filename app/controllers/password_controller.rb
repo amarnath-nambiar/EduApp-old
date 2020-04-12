@@ -4,7 +4,7 @@ class PasswordController < ApplicationController
       return render json: {error: 'Email not present'}
     end
 
-    agent = Agent.find_by(email: params[:email]) # if present find agent by email
+    agent = User.find_by(email: params[:email]) # if present find agent by email
 
     if agent.present?
       agent.generate_password_token! #generate pass token
@@ -22,7 +22,7 @@ class PasswordController < ApplicationController
       return render json: {error: 'Token not present'}
     end
 
-    agent = Agent.find_by(reset_password_token: token)
+    agent = User.find_by(reset_password_token: token)
     if agent.present?  && agent.password_token_valid?
       if agent.reset_password!(params[:password])
         render json: {status: 'ok'}, status: :ok

@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_064722) do
+ActiveRecord::Schema.define(version: 2019_12_07_064021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "agents", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
-    t.string "alt_phone"
-    t.string "about"
-    t.string "image_url"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "colleges", force: :cascade do |t|
     t.string "full_name"
@@ -97,16 +85,6 @@ ActiveRecord::Schema.define(version: 2019_12_07_064722) do
     t.index ["imageable_type", "imageable_id"], name: "index_media_on_imageable_type_and_imageable_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.bigint "student_id"
-    t.string "user_name"
-    t.string "phone"
-    t.string "query"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_messages_on_student_id"
-  end
-
   create_table "ratings", force: :cascade do |t|
     t.integer "star"
     t.string "title"
@@ -148,12 +126,16 @@ ActiveRecord::Schema.define(version: 2019_12_07_064722) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
+    t.string "email"
     t.string "alt_phone"
     t.string "referral_code"
     t.string "referred_by"
     t.string "image_url"
     t.string "city"
     t.datetime "deleted_at"
+    t.string "password_digest"
+    t.string "reset_password_token"
+    t.string "reset_password_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -169,13 +151,30 @@ ActiveRecord::Schema.define(version: 2019_12_07_064722) do
     t.index ["college_id"], name: "index_testimonials_on_college_id"
   end
 
-  add_foreign_key "colleges", "agents"
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "alt_phone"
+    t.string "about"
+    t.string "image_url"
+    t.datetime "deleted_at"
+    t.string "email"
+    t.string "password_digest"
+    t.string "referral_code"
+    t.string "referred_by"
+    t.string "city"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "colleges", "users", column: "agent_id"
   add_foreign_key "course_interests", "courses"
   add_foreign_key "course_interests", "interests"
   add_foreign_key "courses", "colleges"
   add_foreign_key "leads", "courses"
   add_foreign_key "leads", "students"
-  add_foreign_key "messages", "students"
   add_foreign_key "ratings", "colleges"
   add_foreign_key "ratings", "students"
   add_foreign_key "references", "students"

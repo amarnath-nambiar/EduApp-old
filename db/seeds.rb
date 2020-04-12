@@ -1,5 +1,5 @@
 
-agent = Agent.create(:first_name=>"Demo", :last_name=>"Agent", :phone=>"1223334444", :password=>"12345", :email=>"demo@demo.com")
+agent = User.create(:first_name=>"Demo", :last_name=>"User", :phone=>"1223334444", :password=>"12345", :email=>"demo@demo.com")
 college = College.create(:full_name=>"Demo College of Engineering", :code=>"DCE", :address=> "Coimbatore, Tamilnadu", :city=>"Coimbatore", :country=>"India", :agent=>agent)
 courses = Course.create([{:full_name=>"BE Computer Science and Engineering", short_name: "BE CSE", :about=>"Bachelors degree programme in computer science", :college=>college},
                          {:full_name=>"BE Information Technology", short_name: "BE IT", :about=>"Bachelors degree programme in information technology", :college=>college},

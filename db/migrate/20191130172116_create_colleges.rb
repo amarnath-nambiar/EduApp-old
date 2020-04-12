@@ -11,7 +11,7 @@ class CreateColleges < ActiveRecord::Migration[5.2]
       t.string :website
       t.boolean :archived
       t.datetime :deleted_at
-      t.references :agent, foreign_key: true
+      t.references :agent,foreign_key: true
 
       t.timestamps
     end
